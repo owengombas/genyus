@@ -6,6 +6,7 @@ import time
 
 from rauth import OAuth2Service
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 from Song import Song
 from Artist import Artist
@@ -54,11 +55,13 @@ class API:
                 name=res['response']['song']['title'],
                 album=album,
                 artist=artist,
-                lyrics=lyrics
+                lyrics=lyrics,
+                image=res['response']['song']['header_image_url'],
+                date=datetime.strptime(res['response']['song']['release_date'], "%Y-%m-%d").isoformat()
             )
         else:
             t = 10
-            print(f"Wainting {t} secondes")
+            print(f"Waiting {t} secondes")
             time.sleep(t)
             return self.getSong(id)
     
@@ -68,10 +71,10 @@ class API:
 api = API()
 
 song = api.getSong("3716416")
-
 print(song)
 
-# data = api.search("Kendrick Lamar")
+data = api.search("Damso")
+print(data)
 
 f = open("data.json", "w")
 f.write(song.toJson())

@@ -7,13 +7,17 @@ class Song:
     id,
     artist,
     album,
-    lyrics
+    lyrics,
+    image,
+    date
   ):
     self.name = name
     self.id = id
     self.album = album
     self.lyrics = lyrics
     self.artist = artist
+    self.image = image
+    self.date = date
   
   def toJson(self):
     return json.dumps(self, default=lambda o: o.__dict__)
