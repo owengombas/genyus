@@ -1,5 +1,3 @@
-import json
-
 class Artist:
   def __init__(
     self,
@@ -12,6 +10,3 @@ class Artist:
     self.id = id
     self.image = image
     self.url = url
-  
-  def toJson(self):
-    return json.dumps(self, default=lambda o: o.__dict__)

@@ -1,5 +1,3 @@
-import json
-import http.client
 import re
 import requests
 import time
@@ -7,12 +5,13 @@ import time
 from rauth import OAuth2Service
 from bs4 import BeautifulSoup
 from datetime import datetime
+
 from typing import List
 
-from Song import Song
-from Artist import Artist
-from Album import Album
-from Search import Search
+from .Song import Song
+from .Artist import Artist
+from .Album import Album
+from .Search import Search
 
 class API:
     def __init__(self):
@@ -125,25 +124,16 @@ class API:
 
         return results
     
-    def populateResults(self, results: List[Search], wait = 10):
+    def populateResults(
+        self,
+        results: List[Search],
+        wait: int = 10
+    ):
         songs: List[Song] = []
 
         for result in results:
-            print(f"Scraping   {result.artist.name} - {result.title}   lyrics...")
+            print(f"Getting:    {result.artist.name} - {result.title}")
             song = self.getSong(result.song_id)
             songs.append(song)
 
         return songs
-
-api = API()
-
-# song = api.getSong("3716416")
-# print(song)
-
-results = api.search("Damso")
-searches = api.populateResults(results)
-print(searches)
-
-# f = open("data.json", "w")
-# f.write(song.toJson())
-# f.close()

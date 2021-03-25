@@ -1,4 +1,4 @@
-from Artist import Artist
+from .Artist import Artist
 
 class Search:
   def __init__(
