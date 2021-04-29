@@ -1,14 +1,18 @@
+from .Artist import Artist
+from .Album import Album
+
+
 class Song:
   def __init__(
     self,
-    name,
-    id,
-    artist,
-    album,
-    lyrics,
-    image,
-    date,
-    url
+    name: str,
+    id: int,
+    artist: Artist,
+    album: Album,
+    lyrics: str,
+    image: str,
+    date: str,
+    url: str
   ):
     self.name = name
     self.id = id

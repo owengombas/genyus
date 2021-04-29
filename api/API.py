@@ -4,6 +4,7 @@ import time
 
 from rauth import OAuth2Service
 from bs4 import BeautifulSoup
+from bs4 import PageElement
 from datetime import datetime
 
 from typing import List
@@ -12,6 +13,7 @@ from .Song import Song
 from .Artist import Artist
 from .Album import Album
 from .Search import Search
+
 
 class API:
     def __init__(self):
@@ -23,12 +25,12 @@ class API:
         )
 
         self.session = self.genius.get_session(
-            token="MMkxdEEuFTGee5lvCdwIOwwIMZNcHozfm1J9LZq4Cy0Ade0_Mn_J4alFHsdAyyix"
+            token="qfhBonIalyiGK0DcsHmg3-heXf485c1dSV-gOM3ZU4Wn3eD-6-pKjESnhYg4kJ1y"
         )
-    
+
     def getLyrics(
         self,
-        url: str, 
+        url: str,
         retry: bool = False,
         wait_retry: int = 30,
         wait: int = 0
@@ -37,9 +39,15 @@ class API:
 
         html = BeautifulSoup(htmlRes, 'html.parser')
 
-        lyricsDiv = html.find("div", class_="lyrics")
+        lyricsDiv: PageElement = html.find("div", class_="lyrics")
+
+        if lyricsDiv == None:
+            lyricsDiv = html.find("div", class_="Lyrics__Root-sc-1ynbvzw-0")
 
         if lyricsDiv != None:
+            for br in lyricsDiv.find_all("br"):
+                br.replace_with("\n")
+
             lyrics: str = lyricsDiv.get_text()
 
             lyrics = lyrics \
@@ -47,18 +55,16 @@ class API:
                 .replace('\n', ' ').strip() \
                 .replace(r'\s+', ' ')
 
+            time.sleep(wait)
+
             return lyrics
         elif retry:
             print(f"Cannot scrap lyrics... waiting {wait_retry} secondes")
             time.sleep(wait_retry)
-            return self.getLyrics(url)
-        
+            return self.getLyrics(url, retry, wait_retry, wait)
 
-        time.sleep(wait)
-        
         return None
 
-    
     def getSong(
         self,
         id: int,
@@ -71,34 +77,42 @@ class API:
         url = res['response']['song']['url']
         lyrics = ""
 
-        if with_lyrics:
-            lyrics = self.getLyrics(url, retry, wait_retry, wait)
-        
-        if lyrics != None:
+        album: Album = None
+
+        if res['response']['song']['album']:
             album = Album(
                 name=res['response']['song']['album']['name'],
                 id=res['response']['song']['album']['id']
             )
 
-            artist = Artist(
-                name=res['response']['song']['album']['artist']['name'],
-                id=res['response']['song']['album']['artist']['id'],
-                url=res['response']['song']['album']['artist']['url'],
-                image=res['response']['song']['album']['artist']['image_url']
-            )
+        artist = Artist(
+            name=res['response']['song']['primary_artist']['name'],
+            id=res['response']['song']['primary_artist']['id'],
+            url=res['response']['song']['primary_artist']['url'],
+            image=res['response']['song']['primary_artist']['image_url']
+        )
 
-            return Song(
-                id=res['response']['song']['id'],
-                name=res['response']['song']['title'],
-                album=album,
-                artist=artist,
-                lyrics=lyrics,
-                image=res['response']['song']['header_image_url'],
-                url=url,
-                date=datetime.strptime(res['response']['song']['release_date'], "%Y-%m-%d").isoformat()
-            )
-    
-    def search(self, query: str):
+        song = Song(
+            id=res['response']['song']['id'],
+            name=res['response']['song']['title'],
+            album=album,
+            artist=artist,
+            image=res['response']['song']['header_image_url'],
+            url=url,
+            lyrics=lyrics,
+            date=datetime.strptime(
+                res['response']['song']['release_date'] or "1900-01-01", "%Y-%m-%d").isoformat()
+        )
+
+        if with_lyrics:
+            lyrics = self.getLyrics(url, retry, wait_retry, wait)
+
+        if lyrics != None:
+            song.lyrics = lyrics
+
+        return song
+
+    def search(self, query: str) -> List[Search]:
         search = self.session.get(f"search?q={query}").json()
         hits = search['response']['hits']
         results: List[Search] = []
@@ -123,12 +137,12 @@ class API:
             results.append(search)
 
         return results
-    
+
     def populateResults(
         self,
         results: List[Search],
         wait: int = 10
-    ):
+    ) -> List[Song]:
         songs: List[Song] = []
 
         for result in results:
