@@ -3,21 +3,10 @@ from typing import List
 
 from api.API import API
 from api.Song import Song
+from lib.File import File
 
 api = API()
 songs: List[Song] = []
-
-
-def writeFile():
-    f = open("./datas/songs.json", "w", encoding="utf8")
-    f.write(
-        json.dumps(
-            songs,
-            default=lambda obj: obj.__dict__,
-            ensure_ascii=False
-        )
-    )
-    f.close()
 
 
 with open("./datas/songs_input.txt", "r", encoding="utf8") as file:
@@ -28,4 +17,4 @@ with open("./datas/songs_input.txt", "r", encoding="utf8") as file:
             song = api.getSong(results[0].song_id, True, True, 10, 0)
             songs.append(song)
             print(f"SCRAPED: {song.artist.name} - {song.name}")
-            writeFile()
+            File.write_json("./datas/songs.json", songs)
