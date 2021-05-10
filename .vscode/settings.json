@@ -1,3 +1,4 @@
 {
-  "python.pythonPath": "C:\\Users\\oweng\\anaconda3\\envs\\hearc\\python.exe"
+  "python.pythonPath": "/usr/local/bin/python3",
+  "jupyter.jupyterServerType": "local"
 }

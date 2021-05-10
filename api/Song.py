@@ -1,8 +1,17 @@
-from .Artist import Artist
-from .Album import Album
+from . import Artist, Album
 
 
 class Song:
+    name: str
+    id: int
+    artist: Artist
+    album: Album
+    lyrics: str
+    image: str
+    date: str
+    url: str
+    lyrics_dictionary: str
+
     def __init__(
         self,
         name: str,

@@ -9,7 +9,7 @@ api = API()
 songs: List[Song] = []
 
 
-with open("./datas/songs_input.txt", "r", encoding="utf8") as file:
+with open("./datas/import.txt", "r", encoding="utf8") as file:
     lines = file.read().splitlines()
     for songQuery in lines:
         results = api.search(songQuery)
@@ -17,4 +17,4 @@ with open("./datas/songs_input.txt", "r", encoding="utf8") as file:
             song = api.getSong(results[0].song_id, True, True, 10, 0)
             songs.append(song)
             print(f"SCRAPED: {song.artist.name} - {song.name}")
-            File.write_json("./datas/songs.json", songs)
+            File.write_json("./datas/songs_2.json", songs)
