@@ -1,11 +1,12 @@
 import pandas as pd
 import json
+
 from typing import List
 from api import Song, Artist
 from lib import File
 
 
-with open("./datas/songs_cleaned.json", "r", encoding="utf8") as file:
+with open("./src/datas/songs_cleaned.json", "r", encoding="utf8") as file:
     songs: List[Song] = json.loads(file.read())
     artists: List[Artist] = []
 
@@ -25,4 +26,4 @@ with open("./datas/songs_cleaned.json", "r", encoding="utf8") as file:
 
         artist["songs"].append(song)
 
-    File.write_json("./datas/artists.json", artists)
+    File.write_json("./src/datas/artists.json", artists)

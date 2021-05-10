@@ -1,11 +1,12 @@
 import json
-from typing import List
 import re
+
+from typing import List
 
 from api.Song import Song
 from lib.File import File
 
-with open("./datas/songs.json", "r", encoding="utf8") as file:
+with open("./src/datas/songs.json", "r", encoding="utf8") as file:
     songs: List[Song] = json.loads(file.read())
 
     cleaned_songs: List[Song] = []
@@ -13,11 +14,13 @@ with open("./datas/songs.json", "r", encoding="utf8") as file:
     for song in songs:
         lyrics: str = song["lyrics"]
 
+        # Remove all the undesired chars
         lyrics = re.sub(r"\s*\[(.*?)\]\s*", " ", lyrics, flags=re.M | re.I)
         lyrics = re.sub(r"[^a-zA-Z \w ' -]", " ", lyrics, flags=re.M | re.I)
         lyrics = re.sub(r"\w*\d\w*", "", lyrics, flags=re.M | re.I)
         lyrics = re.sub(r"\s{2,}", " ", lyrics, flags=re.M | re.I)
 
+        # Create a field that aims to be compared to a french dictionary
         lyrics_dictionary = re.sub(
             r"\s(j'|l'|t'|c'|qu'|t'|d'|s'|n'|y')\s*", " ", lyrics, flags=re.M | re.I)
 
@@ -27,7 +30,4 @@ with open("./datas/songs.json", "r", encoding="utf8") as file:
         song["lyrics_dictionary"] = lyrics_dictionary
         song["lyrics"] = lyrics
 
-        # if not (song["id"] in map(lambda s: s["id"], songs):
-        #    cleaned_songs.append(song)
-
-    File.write_json("./datas/songs_cleaned.json", songs)
+    File.write_json("./src/datas/songs_cleaned.json", songs)

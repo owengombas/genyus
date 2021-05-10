@@ -1,7 +1,6 @@
 import re
 import requests
 import time
-import asyncio
 
 from typing import List
 from rauth import OAuth2Service
@@ -15,7 +14,14 @@ from .Search import Search
 
 
 class API:
+    """
+    Simplify the requests to the Genius API
+    """
+
     def __init__(self):
+        """
+        Initialize the Genius API session
+        """
         self.genius = OAuth2Service(
             client_id="xAP0jvOkLrC3eAjwE4iCeY5BdSrgH7qKUQyh8907-2fGiAGYEHJMNhtFglSLznAq",
             client_secret="WIVq7t1Jq5uaN0OkYCPzhVMr4mt_d-ufoq5fSC6qmyUaxodx5kZ4bS56J87C-LXGRqeeXp9nFpjgrgPtZ_8niA",
@@ -34,12 +40,25 @@ class API:
         wait_retry: int = 30,
         wait: int = 0
     ) -> str:
+        """
+        Get the lyrics from the Genius website
+
+        Parameters:
+            url (str): The lyrics page URL
+            retry (bool): Retry the request if it fails (default False)
+            wait_retry (int): Wait x seconds before retrying (default 30)
+            wait (int): Wait x seconds before returning the result (default 0)
+
+        Returns:
+            lyrics (str or None): The lyrics of the song
+        """
+
         htmlRes = requests.get(url).text
 
         html = BeautifulSoup(htmlRes, 'html.parser')
 
+        # Find the correct lyrics div in the html file
         lyricsDiv: PageElement = html.find("div", class_="lyrics")
-
         if lyricsDiv == None:
             lyricsDiv = html.find("div", class_="Lyrics__Root-sc-1ynbvzw-0")
 
@@ -49,6 +68,7 @@ class API:
 
             lyrics: str = lyricsDiv.get_text()
 
+            # Normalize and remove weird chars from the lyrics
             lyrics = lyrics \
                 .replace(r'[\(\[].*?[\)\]]', '') \
                 .replace('\n', ' ').strip() \
@@ -57,14 +77,16 @@ class API:
             time.sleep(wait)
 
             return lyrics
+
         elif retry:
+            # Retry if it failed
             print(f"Cannot scrap lyrics... waiting {wait_retry} secondes")
             time.sleep(wait_retry)
             return self.getLyrics(url, retry, wait_retry, wait)
 
         return None
 
-    async def getSong(
+    def getSong(
         self,
         id: int,
         with_lyrics: bool = False,
@@ -72,6 +94,20 @@ class API:
         wait_retry: int = 30,
         wait: int = 0
     ) -> Song:
+        """
+        Get a song from the Genius API and parse it into objects (selecting only interesting fields)
+
+        Parameters:
+            id (int): The song's ID
+            with_lyrics (bool): Get the song with it's lyrics (default False)
+            retry (bool): Retry the request if the getting lyrics method failed (default False)
+            wait_retry (int): Wait x seconds if the getting lyrics method failed (default 30)
+            wait (int): Wait x seconds after the lyrics method (default 0)
+
+        Returns:
+            lyrics (Song): The song
+        """
+
         res = self.session.get(f"songs/{id}?text_format=plain").json()
         url = res['response']['song']['url']
         lyrics = ""
@@ -112,6 +148,16 @@ class API:
         return song
 
     def search(self, query: str) -> List[Search]:
+        """
+        Search for an album, artist, song in the Genius API
+
+        Parameters:
+            query (str): The search query
+
+        Returns:
+            Results (List[Search]): The provided results
+        """
+
         search = self.session.get(f"search?q={query}").json()
         hits = search['response']['hits']
         results: List[Search] = []
@@ -136,17 +182,3 @@ class API:
             results.append(search)
 
         return results
-
-    def populateResults(
-        self,
-        results: List[Search],
-        wait: int = 10
-    ) -> List[Song]:
-        songs: List[Song] = []
-
-        for result in results:
-            print(f"Getting:    {result.artist.name} - {result.title}")
-            song = self.getSong(result.song_id)
-            songs.append(song)
-
-        return songs
