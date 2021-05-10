@@ -33,7 +33,7 @@ class API:
             token="qfhBonIalyiGK0DcsHmg3-heXf485c1dSV-gOM3ZU4Wn3eD-6-pKjESnhYg4kJ1y"
         )
 
-    def getLyrics(
+    def get_lyrics(
         self,
         url: str,
         retry: bool = False,
@@ -82,11 +82,11 @@ class API:
             # Retry if it failed
             print(f"Cannot scrap lyrics... waiting {wait_retry} secondes")
             time.sleep(wait_retry)
-            return self.getLyrics(url, retry, wait_retry, wait)
+            return self.get_lyrics(url, retry, wait_retry, wait)
 
         return None
 
-    def getSong(
+    def get_song(
         self,
         id: int,
         with_lyrics: bool = False,
@@ -140,7 +140,7 @@ class API:
         )
 
         if with_lyrics:
-            lyrics = self.getLyrics(url, retry, wait_retry, wait)
+            lyrics = self.get_lyrics(url, retry, wait_retry, wait)
 
         if lyrics != None:
             song.lyrics = lyrics
