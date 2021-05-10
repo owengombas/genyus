@@ -15,12 +15,14 @@ with open("./datas/songs_cleaned.json", "r", encoding="utf8") as file:
 
         artist = foundArtists[0] if len(foundArtists) > 0 else song["artist"]
 
+        if len(foundArtists) <= 0:
+            artists.append(artist)
+
         if not "songs" in artist:
             artist["songs"] = []
 
         del song["artist"]
 
         artist["songs"].append(song)
-        artists.append(artist)
 
     File.write_json("./datas/artists.json", artists)
