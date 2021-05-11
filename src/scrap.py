@@ -10,7 +10,7 @@ from lib.File import File
 api = API()
 songs: List[Song] = []
 
-with open("./src/datas/songs_input.txt", "r", encoding="utf8") as file:
+with open("./src/datas/songs.txt", "r", encoding="utf8") as file:
     lines = file.read().splitlines()
 
     for songQuery in lines:

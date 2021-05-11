@@ -30,4 +30,4 @@ with open("./src/datas/songs.json", "r", encoding="utf8") as file:
         song["lyrics_dictionary"] = lyrics_dictionary
         song["lyrics"] = lyrics
 
-    File.write_json("./src/datas/songs_cleaned.json", songs)
+    File.write_json("./src/datas/songs.json", songs)
