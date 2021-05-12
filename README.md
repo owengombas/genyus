@@ -1,14 +1,11 @@
 # genyus 🐍
 Lyrics analysis with genius.com, Python and Jupyter Notebooks
 
-# Notebooks
-All the project notebooks are [here](https://github.com/OwenCalvin/genyus/tree/main/notebooks/report)
-
-# Tasks
-All the tasks are in [the project page](https://github.com/OwenCalvin/genyus/projects/1)
-
-# Datas
-The collected and processed datas are located [here](https://github.com/OwenCalvin/genyus/tree/main/src/datas)
+# Index
+- [Project notebooks](https://github.com/OwenCalvin/genyus/tree/main/notebooks/report)
+- [Tasks](https://github.com/OwenCalvin/genyus/projects/1)
+- [Collected and processed datas](https://github.com/OwenCalvin/genyus/tree/main/src/datas)
+- [The school course](https://github.com/OwenCalvin/genyus/tree/main/notebooks/course) (Benoit Le Callennec)
 
 # See also
 - [numpy](https://numpy.org/)
@@ -19,5 +16,5 @@ The collected and processed datas are located [here](https://github.com/OwenCalv
 - [genius](https://genius.com)
 
 # Contributors
-- [Owen Gombas](https://github.com/OwenCalvin)
-- [David Darmanger](https://github.com/darmangerd)
+- [Owen Gombas](https://github.com/OwenCalvin) (@OwenCalvin)
+- [David Darmanger](https://github.com/darmangerd) (@darmangerd)
