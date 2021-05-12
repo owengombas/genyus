@@ -28,7 +28,7 @@ with open("./src/datas/songs.json", "r", encoding="utf8") as file:
 
     for song in songs:
         existing = list(filter(lambda x: x["name"] == song["name"], songs))
-        if len(existing) < 2:
+        if len(existing) < 2 and song["album"] != None:
             songs_json.append(song)
 
     File.write_json("./src/datas/songs.json", songs_json)
