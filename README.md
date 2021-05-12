@@ -1,4 +1,4 @@
-# Genyus 🐍
+# genyus 🐍
 Lyrics analysis with genius.com, Python and Jupyter Notebooks
 
 # Notebooks
