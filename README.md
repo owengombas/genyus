@@ -4,7 +4,7 @@ Lyrics analysis with genius.com, Python and Jupyter Notebooks
 # Notebooks
 All the project notebooks are [here](https://github.com/OwenCalvin/genyus/tree/main/notebooks/report)
 
-# Taks
+# Tasks
 All the tasks are in [the project page](https://github.com/OwenCalvin/genyus/projects/1)
 
 # See also
