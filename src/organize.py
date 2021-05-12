@@ -6,7 +6,7 @@ from api import Song, Artist
 from lib import File
 
 
-with open("./src/datas/songs_cleaned.json", "r", encoding="utf8") as file:
+with open("./src/datas/songs.json", "r", encoding="utf8") as file:
     songs: List[Song] = json.loads(file.read())
     artists: List[Artist] = []
 

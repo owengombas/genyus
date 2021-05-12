@@ -22,10 +22,16 @@ with open("./src/datas/songs.json", "r", encoding="utf8") as file:
 
         # Create a field that aims to be compared to a french dictionary
         lyrics_dictionary = re.sub(
-            r"\s(j'|l'|t'|c'|qu'|t'|d'|s'|n'|y')\s*", " ", lyrics, flags=re.M | re.I)
+            r"\s*(j'|l'|t'|c'|qu'|t'|d'|s'|n'|y'|m'|qu'|-)\s*", " ", lyrics, flags=re.M | re.I)
+        lyrics_dictionary = re.sub(
+            r"'", " ", lyrics_dictionary, flags=re.M | re.I)
+        lyrics_dictionary = re.sub(
+            r"\s{1,}\w{,1}\s{1,}", "", lyrics_dictionary, flags=re.M | re.I)
+        lyrics_dictionary = re.sub(
+            r"\s{2,}", " ", lyrics_dictionary, flags=re.M | re.I)
 
-        lyrics = lyrics.strip()
-        lyrics_dictionary = lyrics_dictionary.strip()
+        lyrics = lyrics.strip().lower()
+        lyrics_dictionary = lyrics_dictionary.strip().lower()
 
         song["lyrics_dictionary"] = lyrics_dictionary
         song["lyrics"] = lyrics
