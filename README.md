@@ -4,8 +4,8 @@ Lyrics analysis with genius.com, Python and Jupyter Notebooks
 # Notebooks
 All the project notebooks are [here](https://github.com/OwenCalvin/genyus/tree/main/notebooks/report)
 
-# TODO
-- The "cleaning_process" notebook
+# Taks
+All the tasks are in [the project page](https://github.com/OwenCalvin/genyus/projects/1)
 
 # See also
 - [numpy](https://numpy.org/)
