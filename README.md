@@ -7,6 +7,9 @@ All the project notebooks are [here](https://github.com/OwenCalvin/genyus/tree/m
 # Tasks
 All the tasks are in [the project page](https://github.com/OwenCalvin/genyus/projects/1)
 
+# Datas
+The collected and processed datas are located [here](https://github.com/OwenCalvin/genyus/tree/main/src/datas)
+
 # See also
 - [numpy](https://numpy.org/)
 - [pandas](https://pandas.pydata.org/)
