@@ -22397,7 +22397,6 @@ Gounod's
 Gourmont
 Gouverneur
 Gouverneur's
-Gov
 Gove
 Gove's
 Government
@@ -28767,7 +28766,6 @@ Jugoslav's
 Jugoslavic
 Jugoslavs
 Jugurtha
-Jul
 Jules
 Jules's
 Julesburg
@@ -48584,8 +48582,6 @@ Rolesville
 Rolesville's
 Rolette
 Rolette's
-Rolex
-Rolex's
 Rolf
 Rolf's
 Rolfe
@@ -55633,8 +55629,6 @@ Tasmania's
 Tasmanian
 Tasmanian's
 Tasmanians
-Tass
-Tass's
 Tasso
 Taswell
 Taswell's
@@ -164548,7 +164542,6 @@ goutworts
 gouty
 gouvernante
 gouvernantes
-gov
 govern
 governable
 governance
@@ -213337,7 +213330,6 @@ moits
 mojarra
 mojarra's
 mojarras
-mojo
 mojoes
 mojos
 mokaddam
@@ -283933,8 +283925,6 @@ sheikhas
 sheikhs
 sheila
 sheilas
-sheitan
-sheitans
 shekel
 shekel's
 shekels
@@ -299890,8 +299880,6 @@ stuccoing
 stuccowork
 stuccoworks
 stuck
-stud
-stud's
 studbook
 studbook's
 studbooks
@@ -341748,8 +341736,6 @@ yaups
 yautia
 yautia's
 yautias
-yaw
-yaw's
 yawed
 yawey
 yawing
