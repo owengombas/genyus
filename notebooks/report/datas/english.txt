@@ -41212,7 +41212,6 @@ OEM
 OEO
 OF
 OFris
-OG
 OH
 OHG
 OHSA
@@ -45119,7 +45118,6 @@ Plasticene's
 Plasticine
 Plasticine's
 Plasticines
-Plata
 Plataea
 Plataea's
 Plataean
@@ -58222,7 +58220,6 @@ UV
 UV's
 UVA
 UVB
-UZI
 UZIs
 Ubangi
 Ubangi's
@@ -58652,8 +58649,6 @@ Uzbek's
 Uzbekistan
 Uzbekistan's
 Uzbeks
-Uzi
-Uzi's
 Uzis
 V
 V's
@@ -85813,8 +85808,6 @@ bifacial
 bifacially
 bifarious
 bifariously
-biff
-biff's
 biffed
 biffies
 biffin
@@ -87249,8 +87242,6 @@ biweeklies
 biweekly
 biweekly's
 biyearly
-biz
-biz's
 bizarre
 bizarrely
 bizarreness
@@ -100991,7 +100982,6 @@ chandlery's
 chanfron
 chanfron's
 chanfrons
-chang
 change
 change's
 changeabilities
@@ -247037,7 +247027,6 @@ pogromists
 pogroms
 pogy
 pogy's
-poh
 pohs
 pohutukawa
 poi
@@ -331224,7 +331213,6 @@ vanquishing
 vanquishment
 vanquishments
 vans
-vant
 vantage
 vantage's
 vantageless
@@ -340322,8 +340310,6 @@ wooed
 wooer
 wooer's
 wooers
-woof
-woof's
 woofed
 woofer
 woofer's
@@ -340837,8 +340823,6 @@ wouralis
 wove
 woven
 wovens
-wow
-wow's
 wowed
 wowee
 wowing
@@ -341576,7 +341560,6 @@ yagi
 yagi's
 yagis
 yags
-yah
 yahoo
 yahoo's
 yahooism
