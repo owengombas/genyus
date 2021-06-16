@@ -5,7 +5,6 @@ Lyrics analysis with genius.com, Python and Jupyter Notebooks
 - [Project notebooks](https://github.com/OwenCalvin/genyus/tree/main/notebooks/report)
 - [Collected and processed datas](https://github.com/OwenCalvin/genyus/tree/main/notebooks/report/datas)
 - [The school course](https://github.com/OwenCalvin/genyus/tree/main/notebooks/course) (Benoit Le Callennec)
-- [Tasks](https://github.com/OwenCalvin/genyus/projects/1)
 
 # See also
 - [numpy](https://numpy.org/)
